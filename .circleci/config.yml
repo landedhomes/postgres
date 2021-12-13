@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build-image:
+    docker:
+      - image: landedhomes/buildpack-deps
+        auth:
+          username: landedhomes
+          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/postgres/
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: ls -l
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build-image:
+          context:
+            - docker-hub-creds
