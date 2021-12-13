@@ -18,8 +18,14 @@ jobs:
           name: Build Docker image
           command: cd development && docker build -t landedhomes/postgres:development .
       - run:
+          name: Docker login
+          command: docker login -U landedhomes -p $DOCKERHUB_PASSWORD
+      - run:
           name: Push Docker image
           command: docker push landedhomes/postgres:development
+      - run:
+          name: Docker logout
+          command: docker logout
 
 workflows:
   version: 2
