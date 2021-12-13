@@ -10,8 +10,6 @@ jobs:
     working_directory: ~/postgres/
     steps:
       - checkout
-      - attach_workspace:
-          at: .
       - setup_remote_docker:
           version: 20.10.6
       - run:
