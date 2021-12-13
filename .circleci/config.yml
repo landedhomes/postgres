@@ -12,7 +12,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.6
       - run:
           name: Build Docker image
           command: cd development && docker build -t landedhomes/postgres:development . 
