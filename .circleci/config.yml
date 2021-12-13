@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build-image:
+  build-and-push-image:
     docker:
       - image: landedhomes/buildpack-deps
         auth:
@@ -16,12 +16,19 @@ jobs:
           version: 20.10.6
       - run:
           name: Build Docker image
-          command: cd development && docker build -t landedhomes/postgres:development . 
+          command: cd development && docker build -t landedhomes/postgres:development .
+      - run:
+          name: Push Docker image
+          command: docker push landedhomes/postgres:development
 
 workflows:
   version: 2
   workflow:
     jobs:
-      - build-image:
+      - build-and-push-image:
+          #filters:
+            #branches:
+              #only:
+                #- main
           context:
             - docker-hub-creds
