@@ -15,7 +15,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build Docker image
-          command: ls -l
+          command: docker build -t landedhomes/postgres:development -f development/Dockerfile . 
 
 workflows:
   version: 2
