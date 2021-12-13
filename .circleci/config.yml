@@ -27,9 +27,9 @@ workflows:
   workflow:
     jobs:
       - build-and-push-image:
-          #filters:
-            #branches:
-              #only:
-                #- main
+          filters:
+            branches:
+              only:
+                - main
           context:
             - docker-hub-creds
