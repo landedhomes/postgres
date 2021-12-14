@@ -15,12 +15,12 @@ jobs:
       - run:
           name: Build Docker image
           command: cd development && docker build -t landedhomes/postgres:development .
-#      - run:
-#          name: Push Docker image
-#          command: |
-#            echo $DOCKERHUB_PASSWORD | docker login -u landedhomes --password-stdin
-#            docker push landedhomes/postgres:development
-#            docker logout
+      - run:
+          name: Push Docker image
+          command: |
+            echo $DOCKERHUB_PASSWORD | docker login -u landedhomes --password-stdin
+            docker push landedhomes/postgres:development
+            docker logout
 
 workflows:
   version: 2
@@ -31,6 +31,5 @@ workflows:
             branches:
               only:
                 - main
-                - update-base-image
           context:
             - docker-hub-creds
