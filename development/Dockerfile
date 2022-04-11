@@ -10,4 +10,5 @@ RUN set -eux \
         postgresql-11-postgis-2.5
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+COPY ./update-config.sh /docker-entrypoint-initdb.d/20_config.sh
 COPY ./update-postgis.sh /usr/local/bin
